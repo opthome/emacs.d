@@ -1,0 +1,21 @@
+
+(require 'package)
+(setq package-archives '(("gnu"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")
+			 ("melpa" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")
+			 ("org"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/org/")))
+
+(unless (bound-and-true-p package--initialized)
+  (package-initialize))
+(unless package-archive-contents
+  (package-refresh-contents))
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
+
+(eval-when-compile
+  (setq use-package-always-ensure t
+	use-package-always-defer  t
+	use-package-expand-minimally t)
+  (require 'use-package))
+
+(provide 'init-elpa)
